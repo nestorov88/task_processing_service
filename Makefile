@@ -19,6 +19,10 @@ test:		## Run tests
 run:		## Start application locally
 	@go run cmd/app/main.go
 
+.PHONY: tidy
+tidy:		## Run tidiest app
+	@go mod tidy
+
 ifndef ADDR
 override ADDR = http://127.0.0.1:4000/
 endif
