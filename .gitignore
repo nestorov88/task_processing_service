@@ -1,0 +1,11 @@
+# Output of teting tools
+
+*.tmp
+*.out
+
+# Goland
+.idea/
+*.priv
+*.pub
+.venv
+venv

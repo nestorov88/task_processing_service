@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  task_processing_service:
+    image: tps:latest
+    build:
+      context: ../..
+      dockerfile: build/docker/Dockerfile
+    container_name: task_processing_service
+    restart: on-failure
+    env_file: ../../.env
+    ports:
+      - "${SERVER_HOST_PORT}:${SERVER_HOST_PORT}"
