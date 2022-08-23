@@ -34,21 +34,19 @@ func NewTaskService(s sorter.ITaskSorter, v validation.ITaskValidator) *taskServ
 
 func (ts *taskService) GetSortedTasks(tReq *models.TasksRequest) (*models.TasksResponse, error) {
 	ctxlog := ts.ctxlog.WithField("function", "GetSortedTasks")
-	var (
-		err          error
-		taskResponse models.TasksResponse
-	)
 
-	if err = ts.validator.Validate(*tReq.Tasks); err != nil {
-		ctxlog.Error("validation error: %v", err)
+	if err := ts.validator.Validate(*tReq.Tasks); err != nil {
+		ctxlog.Errorf("validation error: %v", err)
 		return nil, fmt.Errorf("validation error: %w", err)
 	}
 
-	if err = ts.sorter.Sort(*tReq.Tasks); err != nil {
-		ctxlog.Error("sorting error: %v", err)
+	if err := ts.sorter.Sort(*tReq.Tasks); err != nil {
+		ctxlog.Errorf("sorting error: %v", err)
 
 		return nil, fmt.Errorf("sorting error: %w", err)
 	}
+
+	taskResponse := make(models.TasksResponse, len(*tReq.Tasks))
 
 	for _, task := range *tReq.Tasks {
 

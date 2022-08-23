@@ -31,7 +31,9 @@ func main() {
 		ctxlog.Panicf("could not create new configuration: %v", err)
 	}
 
-	a = app.NewApp(c)
+	if a, err = app.NewApp(c); err != nil {
+		ctxlog.Panicf("could not create new application: %v", err)
+	}
 
 	if err = a.Run(context.Background()); err != nil {
 		ctxlog.Panicf("app stopped running: %v", err)

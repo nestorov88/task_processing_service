@@ -17,7 +17,7 @@ type App struct {
 	ctxlog *log.Entry
 }
 
-func NewApp(c *config.Configuration) *App {
+func NewApp(c *config.Configuration) (*App, error) {
 	ctxlog := log.WithFields(log.Fields{
 		"package":  "app",
 		"function": "NewApp",
@@ -37,7 +37,7 @@ func NewApp(c *config.Configuration) *App {
 
 	server = srv.NewServer(handler, c.ServerConfig)
 
-	return &App{server: server, ctxlog: ctxlog}
+	return &App{server: server, ctxlog: ctxlog}, nil
 }
 
 func (a *App) Run(ctx context.Context) error {

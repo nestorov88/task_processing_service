@@ -4,11 +4,11 @@ help:		## Display help
 
 .PHONY: start
 start:		## Start dockerised app
-	docker-compose -f ./deploy/docker-compose/docker-compose.yaml up -d
+	docker-compose --env-file .env -f ./deploy/docker-compose/docker-compose.yaml up -d
 
 .PHONY: stop
 stop:		##Stop dockerised app
-	docker-compose -f ./deploy/docker-compose/docker-compose.yaml down
+	docker-compose --env-file .env -f ./deploy/docker-compose/docker-compose.yaml down
 
 .PHONY: test
 test:		## Run tests
@@ -29,6 +29,10 @@ endif
 .PHONY: test-curl
 test-curl:		## Send few test curls. [required ADDR=${value}]
 	curl -d @mytasks.json -H "Accept: text/plain" ${ADDR} | bash
+
+	curl -d @mytasks.json -H "Accept: text/plain" ${ADDR} > test_file
+
 	curl -d @mytasks.json -H "Content-type: text/plain" -H "Accept: text/plain" ${ADDR}
+
 	curl -d @mytasks.json -H "Content-type: text/application-json" ${ADDR}
 
