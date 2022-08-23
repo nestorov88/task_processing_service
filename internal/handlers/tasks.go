@@ -3,8 +3,8 @@ package handlers
 import (
 	"TaskProcessingService/internal/models"
 	"TaskProcessingService/internal/serializer"
+	"TaskProcessingService/internal/serializer/bash"
 	jsn "TaskProcessingService/internal/serializer/json"
-	"TaskProcessingService/internal/serializer/plain"
 	"TaskProcessingService/internal/services"
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
@@ -107,7 +107,7 @@ func respondError(err error, responseCode int, w http.ResponseWriter) {
 
 func getSerializer(contentType string) serializer.ITaskSerializer {
 	if contentType == "text/plain" {
-		return &plain.TaskSerializer{}
+		return &bash.TaskSerializer{}
 	}
 	return &jsn.TaskSerializer{}
 }

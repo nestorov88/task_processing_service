@@ -12,9 +12,9 @@ curl -d @mytasks.json -H "Content-type: text/application-json" ${ADDR}
 ```
 
 ### or
-``
+```
 make test-curl
-``
+```
 
 ## Setup and run locally
 ```
@@ -39,4 +39,10 @@ docker run -dp 4000:4000 task_processing_service
 ### or
 ```
 make start
+```
+
+## Running existing test
+
+```
+make test
 ```

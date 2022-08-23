@@ -1,4 +1,4 @@
-package plain
+package bash
 
 import (
 	"TaskProcessingService/internal/models"
