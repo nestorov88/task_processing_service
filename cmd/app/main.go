@@ -37,5 +37,5 @@ func main() {
 
 	if err = a.Run(context.Background()); err != nil {
 		ctxlog.Panicf("app stopped running: %v", err)
-	}
+	} 
 }
