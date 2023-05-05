@@ -5,7 +5,7 @@ namespace: default
 
 replicaCount: 2
 image:
-  repository: nginxхx
+  repository: nginxх
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
